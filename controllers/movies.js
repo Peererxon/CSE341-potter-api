@@ -71,11 +71,13 @@ const updateMovie = async (req, res) => {
         }
 
         const movieUpdates = {
-            ...(req.body.fullName && { fullName: req.body.fullName }),
-            ...(req.body.house && { house: req.body.house }),
-            ...(req.body.birthdate && { birthdate: req.body.birthdate }),
-            ...(req.body.bloodStatus && { bloodStatus: req.body.bloodStatus }),
-            ...(req.body.patronus && { patronus: req.body.patronus })
+            ...(req.body.movieName && { movieName: req.body.movieName }),
+            ...(req.body.director && { director: req.body.director }),
+            ...(req.body.runtime && { runtime: req.body.runtime }),
+            ...(req.body.seriesNumber && { seriesNumber: req.body.seriesNumber }),
+            ...(req.body.duration && { duration: req.body.duration }),
+            ...(req.body.rating && { rating: req.body.rating }),
+            ...(req.body.releaseDate && { releaseDate: req.body.releaseDate })
         };
 
         const db = mongodb.getDb();
