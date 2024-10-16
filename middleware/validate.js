@@ -1,5 +1,4 @@
 const validator = require('../helpers/validate');
-const { use } = require('../routes');
 
 const validateCharacter = (req, res, next) => {
     const validationRule = {
