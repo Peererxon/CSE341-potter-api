@@ -1,0 +1,41 @@
+// --------------------------------------------
+// LOCALHOST CHARACTERS
+
+### Get all characters
+GET http://localhost:3000/characters
+
+### Get single character by ID
+GET http://localhost:3000/characters/670ee350b43c2b3277f6ed10
+
+### Create character
+POST http://localhost:3000/characters HTTP/1.1
+content-type: application/json
+
+{
+    "fullName": "Albus Dumbledore",
+    "house": "Gryffindor",
+    "birthdate": "1881-07-01",
+    "bloodStatus": "Half-blood",
+    "patronus": "Phoenix"
+}
+
+### Update/edit character by ID
+PUT http://localhost:3000/characters/670ee350b43c2b3277f6ed10 HTTP/1.1
+content-type: application/json
+
+{
+    "fullName": "Albus Dumbledore",
+    "house": "Gryffindor",
+    "birthdate": "1881-07-01",
+    "bloodStatus": "Half-blood",
+    "patronus": "Test"
+}
+
+### Delete character by ID
+DELETE http://localhost:3000/characters/670f35aa8d136b104f2cd4e5 HTTP/1.1
+
+
+
+
+// --------------------------------------------
+// RENDER SERVICE -- CHARACTERS

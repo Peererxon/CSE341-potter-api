@@ -24,17 +24,17 @@ const getSingleMovie = async (req, res) => {
     try {
         const movieId = req.params.id;
 
-        if (!ObjectId.isValid(movieIdId)) {
+        if (!ObjectId.isValid(movieId)) {
             return res.status(400).json({ message: 'Invalid movie ID format' });
         }
 
         const db = mongodb.getDb();
-        const movie = await db.collection('movies').findOne({ _id: new ObjectId.createFromHexString(movieId) });
+        const movie = await db.collection('movies').findOne({ _id: ObjectId.createFromHexString(movieId) });
 
         if (!movie) {
             return res.status(404).send('Movie not found');
         } else {
-            return res.status(200).json(movies);
+            return res.status(200).json(movie);
         }
     } catch (err) {
         console.error('Error fetching single movie:', err);
@@ -81,7 +81,7 @@ const updateMovie = async (req, res) => {
         };
 
         const db = mongodb.getDb();
-        const response = await db.collection('movies').updateOne({ _id: new ObjectId.createFromHexString(movieId) }, { $set: movieUpdates });
+        const response = await db.collection('movies').updateOne({ _id: ObjectId.createFromHexString(movieId) }, { $set: movieUpdates });
 
         if (response.modifiedCount > 0) {
             return res.status(204).send();
@@ -104,7 +104,7 @@ const deleteMovie = async (req, res) => {
         }
 
         const db = mongodb.getDb();
-        const response = await db.collection('movies').deleteOne({ _id: new ObjectId.createFromHexString(movieId) });
+        const response = await db.collection('movies').deleteOne({ _id: ObjectId.createFromHexString(movieId) });
 
         if (response.deletedCount > 0) {
             return res.status(204).send();
