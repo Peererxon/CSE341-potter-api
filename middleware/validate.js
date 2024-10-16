@@ -22,6 +22,31 @@ const validateCharacter = (req, res, next) => {
     });
 };
 
+const validateMovie = (req, res, next) => {
+    const validationRule = {
+        movieName: 'required|string',
+        director: 'required|string',
+        runtime: 'required|date',  
+        seriesNumber: 'required|string',
+        duration: 'required|string',
+        rating: 'required|string',
+        releaseDate: 'required|date'
+    };
+
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            return res.status(400).json({
+                success: false,
+                message: 'Validation failed',
+                data: err
+            });
+        } else {
+            next();
+        }
+    });
+};
+
 module.exports = {
-    validateCharacter
+    validateCharacter,
+    validateMovie
 };
