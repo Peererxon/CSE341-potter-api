@@ -26,8 +26,8 @@ const validateMovie = (req, res, next) => {
     const validationRule = {
         movieName: 'required|string',
         director: 'required|string',
-        runtime: 'required|date',  
-        seriesNumber: 'required|string',
+        runtime: 'required|string',  
+        seriesNumber: 'required|numeric',
         duration: 'required|string',
         rating: 'required|string',
         releaseDate: 'required|date'
