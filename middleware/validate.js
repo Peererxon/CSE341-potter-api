@@ -1,75 +1,100 @@
 const validator = require('../helpers/validate');
 
 const validateCharacter = (req, res, next) => {
-    const validationRule = {
-        fullName: 'required|string',
-        house: 'required|string',
-        birthdate: 'required|date',  
-        bloodStatus: 'required|string',
-        patronus: 'required|string'
-    };
+	const validationRule = {
+		fullName: 'required|string',
+		house: 'required|string',
+		birthdate: 'required|date',
+		bloodStatus: 'required|string',
+		patronus: 'required|string',
+	};
 
-    validator(req.body, validationRule, {}, (err, status) => {
-        if (!status) {
-            return res.status(400).json({
-                success: false,
-                message: 'Validation failed',
-                data: err
-            });
-        } else {
-            next();
-        }
-    });
+	validator(req.body, validationRule, {}, (err, status) => {
+		if (!status) {
+			return res.status(400).json({
+				success: false,
+				message: 'Validation failed',
+				data: err,
+			});
+		} else {
+			next();
+		}
+	});
 };
 
 const validateMovie = (req, res, next) => {
-    const validationRule = {
-        movieName: 'required|string',
-        director: 'required|string',
-        runtime: 'required|string',  
-        seriesNumber: 'required|numeric',
-        duration: 'required|string',
-        rating: 'required|string',
-        releaseDate: 'required|date'
-    };
+	const validationRule = {
+		movieName: 'required|string',
+		director: 'required|string',
+		runtime: 'required|string',
+		seriesNumber: 'required|numeric',
+		duration: 'required|string',
+		rating: 'required|string',
+		releaseDate: 'required|date',
+	};
 
-    validator(req.body, validationRule, {}, (err, status) => {
-        if (!status) {
-            return res.status(400).json({
-                success: false,
-                message: 'Validation failed',
-                data: err
-            });
-        } else {
-            next();
-        }
-    });
+	validator(req.body, validationRule, {}, (err, status) => {
+		if (!status) {
+			return res.status(400).json({
+				success: false,
+				message: 'Validation failed',
+				data: err,
+			});
+		} else {
+			next();
+		}
+	});
 };
 
 const validateSpell = (req, res, next) => {
-    const validationRule = {
-        spellName: 'required|string',
-        spellType: 'required|string',
-        use: 'required|string',
-        difficulty: 'required|string',
-        effects: 'required|string'
-    };
+	const validationRule = {
+		spellName: 'required|string',
+		spellType: 'required|string',
+		use: 'required|string',
+		difficulty: 'required|string',
+		effects: 'required|string',
+	};
 
-    validator(req.body, validationRule, {}, (err, status) => {
-        if (!status) {
-            return res.status(400).json({
-                success: false,
-                message: 'Validation failed',
-                data: err
-            });
-        } else {
-            next();
-        }
-    });
+	validator(req.body, validationRule, {}, (err, status) => {
+		if (!status) {
+			return res.status(400).json({
+				success: false,
+				message: 'Validation failed',
+				data: err,
+			});
+		} else {
+			next();
+		}
+	});
+};
+
+const validateHouse = (req, res, next) => {
+	const validationRule = {
+		name: 'required|string',
+		houseColors: 'required|array',
+		animal: 'required|string',
+		founder: 'required|string',
+		commonRoom: 'required|string',
+		houseHead: 'required|string',
+		houseGhost: 'required|string',
+	};
+
+	validator(req.body, validationRule, {}, (err, status) => {
+		if (!status) {
+			return res.status(400).json({
+				success: false,
+				message: 'Validation failed',
+				data: err,
+			});
+		} else {
+			next();
+		}
+	});
 };
 
 module.exports = {
-    validateCharacter,
-    validateMovie,
-    validateSpell
+	validateCharacter,
+	validateMovie,
+	validateSpell,
+	validateHouse,
 };
