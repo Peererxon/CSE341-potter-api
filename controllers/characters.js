@@ -29,7 +29,7 @@ const getSingleCharacter = async (req, res) => {
         }
 
         const db = mongodb.getDb();
-        const character = await db.collection('characters').findOne({ _id: new ObjectId(characterId) });
+        const character = await db.collection('characters').findOne({ _id: new ObjectId.createFromHexString(characterId) });
 
         if (!character) {
             return res.status(404).send('Character not found');
@@ -79,7 +79,7 @@ const updateCharacter = async (req, res) => {
         };
 
         const db = mongodb.getDb();
-        const response = await db.collection('characters').updateOne({ _id: new ObjectId(characterId) }, { $set: characterUpdates });
+        const response = await db.collection('characters').updateOne({ _id: new ObjectId.createFromHexString(characterId) }, { $set: characterUpdates });
 
         if (response.modifiedCount > 0) {
             return res.status(204).send();
@@ -102,7 +102,7 @@ const deleteCharacter = async (req, res) => {
         }
 
         const db = mongodb.getDb();
-        const response = await db.collection('characters').deleteOne({ _id: new ObjectId(characterId) });
+        const response = await db.collection('characters').deleteOne({ _id: new ObjectId.createFromHexString(characterId) });
 
         if (response.deletedCount > 0) {
             return res.status(204).send();
