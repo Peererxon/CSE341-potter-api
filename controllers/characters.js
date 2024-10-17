@@ -3,6 +3,7 @@ const { ObjectId } = require('mongodb');
 
 // Get all characters
 const getAllCharacters = async (req, res) => {
+    //#swagger.tags=['Characters']
     try {
         const db = mongodb.getDb();
         const result = await db.collection('characters').find();
@@ -21,6 +22,7 @@ const getAllCharacters = async (req, res) => {
 
 // Get single character by ID
 const getSingleCharacter = async (req, res) => {
+    //#swagger.tags=['Characters']
     try {
         const characterId = req.params.id;
 
@@ -44,6 +46,7 @@ const getSingleCharacter = async (req, res) => {
 
 // Create a new character
 const createCharacter = async (req, res) => {
+    //#swagger.tags=['Characters']
     try {
         const character = { ...req.body };
 
@@ -63,6 +66,7 @@ const createCharacter = async (req, res) => {
 
 // Update a character by ID
 const updateCharacter = async (req, res) => {
+    //#swagger.tags=['Characters']
     try {
         const characterId = req.params.id;
 
@@ -94,6 +98,7 @@ const updateCharacter = async (req, res) => {
 
 // Delete a character by ID
 const deleteCharacter = async (req, res) => {
+    //#swagger.tags=['Characters']
     try {
         const characterId = req.params.id;
 

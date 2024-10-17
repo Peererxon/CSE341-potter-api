@@ -4,6 +4,7 @@ const { ObjectId } = require('mongodb');
 // Get all houses
 const collectionName = 'houses';
 const getAllHouses = async (req, res) => {
+	//#swagger.tags=['Houses']
 	try {
 		const db = mongodb.getDb();
 		const result = await db.collection(collectionName).find();
@@ -22,6 +23,7 @@ const getAllHouses = async (req, res) => {
 
 // Get single House by ID
 const getSingleHouse = async (req, res) => {
+	//#swagger.tags=['Houses']
 	try {
 		const houseId = req.params.id;
 
@@ -47,6 +49,7 @@ const getSingleHouse = async (req, res) => {
 
 // Create a new House
 const createHouse = async (req, res) => {
+	//#swagger.tags=['Houses']
 	try {
 		const house = { ...req.body };
 
@@ -71,6 +74,7 @@ const createHouse = async (req, res) => {
 
 // Update a house by ID
 const updateHouse = async (req, res) => {
+	//#swagger.tags=['Houses']
 	try {
 		const houseId = req.params.id;
 
@@ -107,6 +111,7 @@ const updateHouse = async (req, res) => {
 
 // Delete a house by ID
 const deleteHouse = async (req, res) => {
+	//#swagger.tags=['Houses']
 	try {
 		const houseId = req.params.id;
 
