@@ -40,7 +40,33 @@
       "post": {
         "tags": ["Characters"],
         "description": "Creates a new character",
-        
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fullName": {
+                  "example": "Albus Dumbledore"
+                },
+                "house": {
+                  "example": "Gryffindor"
+                },
+                "birthdate": {
+                  "example": "1881-07-01"
+                },
+                "bloodStatus": {
+                  "example": "Half-blood"
+                },
+                "patronus": {
+                  "example": "Phoenix"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -171,6 +197,39 @@
       "post": {
         "tags": ["Movies"],
         "description": "Creates a new movie",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "movieName": {
+                  "example": "Harry Potter and the Order of the Phoenix"
+                },
+                "director": {
+                  "example": "David Yates"
+                },
+                "runtime": {
+                  "example": "138 minutes"
+                },
+                "seriesNumber": {
+                  "example": 5
+                },
+                "duration": {
+                  "example": "2h 18m"
+                },
+                "rating": {
+                  "example": "PG-13"
+                },
+                "releaseDate": {
+                  "example": "2007-07-11"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -307,6 +366,33 @@
       "post": {
         "tags": ["Spells"],
         "description": "Creates a new spell",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "spellName": {
+                  "example": "Accio"
+                },
+                "spellType": {
+                  "example": "Charm"
+                },
+                "use": {
+                  "example": "Summoning"
+                },
+                "difficulty": {
+                  "example": "Easy"
+                },
+                "effects": {
+                  "example": "Summons an object towards the caster."
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -437,6 +523,40 @@
       "post": {
         "tags": ["Houses"],
         "description": "Creates a new house",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "Gryffindor"
+                },
+                "houseColors": {
+                  "type": "array",
+                  "example": ["Red", "Gold"]
+                },
+                "animal": {
+                  "example": "Lion"
+                },
+                "founder": {
+                  "example": "Godric Gryffindor"
+                },
+                "commonRoom": {
+                  "example": "Gryffindor Tower"
+                },
+                "houseHead": {
+                  "example": "Minerva McGonagall"
+                },
+                "houseGhost": {
+                  "example": "Nearly Headless Nick"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -486,6 +606,38 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "Gryffindor"
+                },
+                "houseColors": {
+                  "type": "array",
+                  "example": ["Red", "Gold"]
+                },
+                "animal": {
+                  "example": "Lion"
+                },
+                "founder": {
+                  "example": "Godric Gryffindor"
+                },
+                "commonRoom": {
+                  "example": "Gryffindor Tower"
+                },
+                "houseHead": {
+                  "example": "Minerva McGonagall"
+                },
+                "houseGhost": {
+                  "example": "Nearly Headless Nick"
+                }
+              }
+            }
           }
         ],
         "responses": {
