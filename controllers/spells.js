@@ -3,6 +3,7 @@ const { ObjectId } = require('mongodb');
 
 // Get all spells
 const getAllSpells = async (req, res) => {
+	//#swagger.tags=['Spells']
 	try {
 		const db = mongodb.getDb();
 		const result = await db.collection('spells').find();
@@ -21,6 +22,7 @@ const getAllSpells = async (req, res) => {
 
 // Get single spell by ID
 const getSingleSpell = async (req, res) => {
+	//#swagger.tags=['Spells']
 	try {
 		const spellId = req.params.id;
 
@@ -46,6 +48,7 @@ const getSingleSpell = async (req, res) => {
 
 // Create a new spell
 const createSpell = async (req, res) => {
+	//#swagger.tags=['Spells']
 	try {
 		const spell = { ...req.body };
 
@@ -70,6 +73,7 @@ const createSpell = async (req, res) => {
 
 // Update a spell by ID
 const updateSpell = async (req, res) => {
+	//#swagger.tags=['Spells']
 	try {
 		const spellId = req.params.id;
 
@@ -110,6 +114,7 @@ const updateSpell = async (req, res) => {
 
 // Delete a spell by ID
 const deleteSpell = async (req, res) => {
+	//#swagger.tags=['Spells']
 	try {
 		const spellId = req.params.id;
 
