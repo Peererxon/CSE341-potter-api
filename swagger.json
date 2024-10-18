@@ -5,10 +5,10 @@
     "description": "The CSE341 Potter API is an API designed for Harry Potter fans, providing information about the Harry Potter universe.",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-potter-api-gtxt.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/test": {
