@@ -5,8 +5,8 @@ const doc = {
         title: 'CSE341 | Harry Potter API',
         description: 'The CSE341 Potter API is an API designed for Harry Potter fans, providing information about the Harry Potter universe.',
     },
-    host: 'localhost:3000',
-    schemes: ['http'],
+    host: 'cse341-potter-api-gtxt.onrender.com',
+    schemes: ['https'],
     definitions: {
         characters: {
             fullName: "Draco Malfoy",
