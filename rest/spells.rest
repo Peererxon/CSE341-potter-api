@@ -33,3 +33,43 @@ content-type: application/json
 
 ### Delete spell by ID
 DELETE http://localhost:3000/spells/670ee5fab43c2b3277f6ed1f HTTP/1.1
+
+
+
+
+
+// --------------------------------------------
+// RENDER SERVICE -- SPELLS
+
+### Get all spells
+GET https://cse341-potter-api-gtxt.onrender.com/spells
+
+### Get single spell by ID
+GET https://cse341-potter-api-gtxt.onrender.com/spells/670ee5fab43c2b3277f6ed1f
+
+### Create spell
+POST https://cse341-potter-api-gtxt.onrender.com/spells HTTP/1.1
+content-type: application/json
+
+{
+    "spellName": "Accio",
+    "spellType": "Charm",
+    "use": "Summoning",
+    "difficulty": "Easy",
+    "effects": "Summons an object towards the caster."
+}
+
+### Update/edit spell by ID
+PUT https://cse341-potter-api-gtxt.onrender.com/spells/670ee5fab43c2b3277f6ed1f HTTP/1.1
+content-type: application/json
+
+{
+    "spellName": "Accio",
+    "spellType": "Charm",
+    "use": "Summoning",
+    "difficulty": "Easy",
+    "effects": "Summons an object towards the caster."
+}
+
+### Delete spell by ID
+DELETE https://cse341-potter-api-gtxt.onrender.com/spells/670ee5fab43c2b3277f6ed1f HTTP/1.1
