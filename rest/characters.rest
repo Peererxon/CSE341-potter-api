@@ -39,3 +39,36 @@ DELETE http://localhost:3000/characters/670f35aa8d136b104f2cd4e5 HTTP/1.1
 
 // --------------------------------------------
 // RENDER SERVICE -- CHARACTERS
+
+### Get all characters
+GET https://cse341-potter-api-gtxt.onrender.com/characters
+
+### Get single character by ID
+GET https://cse341-potter-api-gtxt.onrender.com/characters/670ee350b43c2b3277f6ed10
+
+### Create character
+POST https://cse341-potter-api-gtxt.onrender.com/characters HTTP/1.1
+content-type: application/json
+
+{
+    "fullName": "Albus Dumbledore",
+    "house": "Gryffindor",
+    "birthdate": "1881-07-01",
+    "bloodStatus": "Half-blood",
+    "patronus": "Phoenix"
+}
+
+### Update/edit character by ID
+PUT https://cse341-potter-api-gtxt.onrender.com/characters/670ee350b43c2b3277f6ed10 HTTP/1.1
+content-type: application/json
+
+{
+    "fullName": "Albus Dumbledore",
+    "house": "Gryffindor",
+    "birthdate": "1881-07-01",
+    "bloodStatus": "Half-blood",
+    "patronus": "Test"
+}
+
+### Delete character by ID
+DELETE https://cse341-potter-api-gtxt.onrender.com/characters/670f35aa8d136b104f2cd4e5 HTTP/1.1

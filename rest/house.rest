@@ -1,13 +1,13 @@
 // --------------------------------------------
-// LOCALHOST CHARACTERS
+// LOCALHOST HOUSES
 
-### Get all characters
+### Get all houses
 GET http://localhost:3000/houses
 
-### Get single character by ID
+### Get single house by ID
 GET http://localhost:3000/houses/67100469677f4386d4a5c122
 
-### Create character
+### Create house
 POST http://localhost:3000/houses HTTP/1.1
 content-type: application/json
 
@@ -24,7 +24,7 @@ content-type: application/json
     "houseGhost": "Nearly Headless Nick"
 }
 
-### Update/edit character by ID
+### Update/edit house by ID
 PUT http://localhost:3000/houses/67100469677f4386d4a5c122 HTTP/1.1
 content-type: application/json
 
@@ -41,11 +41,54 @@ content-type: application/json
     "houseGhost": "Nearly Headless Nick updated"
 }
 
-### Delete character by ID
+### Delete house by ID
 DELETE http://localhost:3000/houses/670f35aa8d136b104f2cd4e5 HTTP/1.1
 
 
 
 
 // --------------------------------------------
-// RENDER SERVICE -- CHARACTERS
+// RENDER SERVICE -- HOUSES
+
+### Get all houses
+GET https://cse341-potter-api-gtxt.onrender.com/houses
+
+### Get single house by ID
+GET https://cse341-potter-api-gtxt.onrender.com/houses/67100469677f4386d4a5c122
+
+### Create house
+POST https://cse341-potter-api-gtxt.onrender.com/houses HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Gryffindor remix",
+    "houseColors": [
+        "Red",
+        "Gold"
+    ],
+    "animal": "Lion",
+    "founder": "Godric Gryffindor",
+    "commonRoom": "Gryffindor Tower",
+    "houseHead": "Minerva McGonagall",
+    "houseGhost": "Nearly Headless Nick"
+}
+
+### Update/edit house by ID
+PUT https://cse341-potter-api-gtxt.onrender.com/67100469677f4386d4a5c122 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Gryffindor remix updated",
+    "houseColors": [
+        "Red",
+        "Gold"
+    ],
+    "animal": "Lion",
+    "founder": "Godric Gryffindor updated",
+    "commonRoom": "Gryffindor Tower updated",
+    "houseHead": "Minerva McGonagall updated",
+    "houseGhost": "Nearly Headless Nick updated"
+}
+
+### Delete house by ID
+DELETE https://cse341-potter-api-gtxt.onrender.com/670f35aa8d136b104f2cd4e5 HTTP/1.1

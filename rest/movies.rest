@@ -43,3 +43,40 @@ DELETE http://localhost:3000/movies/670f38b532dbd4cfa5dc3d55 HTTP/1.1
 
 // --------------------------------------------
 // RENDER SERVICE -- MOVIES
+
+### Get all movies
+GET https://cse341-potter-api-gtxt.onrender.com/movies
+
+### Get single movie by ID
+GET https://cse341-potter-api-gtxt.onrender.com/movies/670ee585b43c2b3277f6ed1b
+
+### Create movie
+POST https://cse341-potter-api-gtxt.onrender.com/movies HTTP/1.1
+content-type: application/json
+
+{
+    "movieName": "Harry Potter and the Order of the Phoenix",
+    "director": "David Yates",
+    "runtime": "138 minutes",
+    "seriesNumber": 5,
+    "duration": "2h 18m",
+    "rating": "PG-13",
+    "releaseDate": "2007-07-11"
+}
+
+### Update/edit movie by ID
+PUT https://cse341-potter-api-gtxt.onrender.com/movies/670ee5bcb43c2b3277f6ed1d HTTP/1.1
+content-type: application/json
+
+{
+    "movieName": "Harry Potter and the Order of the Phoenix",
+    "director": "David Yates",
+    "runtime": "138 minutes",
+    "seriesNumber": 5,
+    "duration": "2h 18m",
+    "rating": "PG-13",
+    "releaseDate": "2007-07-11"
+}
+
+### Delete movie by ID
+DELETE https://cse341-potter-api-gtxt.onrender.com/movies/670f38b532dbd4cfa5dc3d55 HTTP/1.1
