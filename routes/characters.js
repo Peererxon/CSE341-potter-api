@@ -6,6 +6,7 @@ const { validateCharacter } = require('../middleware/validate');
 
 router.get('/', charactersController.getAllCharacters);
 router.get('/:id', charactersController.getSingleCharacter);
+router.get('/house/:house', charactersController.getCharactersByHouse);
 router.post('/', validateCharacter, charactersController.createCharacter);  
 router.put('/:id', validateCharacter, charactersController.updateCharacter);  
 router.delete('/:id', charactersController.deleteCharacter);

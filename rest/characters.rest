@@ -7,6 +7,9 @@ GET http://localhost:3000/characters
 ### Get single character by ID
 GET http://localhost:3000/characters/670ee350b43c2b3277f6ed10
 
+### Get all characters by house
+GET http://localhost:3000/characters/house/Slytherin
+
 ### Create character
 POST http://localhost:3000/characters HTTP/1.1
 content-type: application/json
@@ -45,6 +48,9 @@ GET https://cse341-potter-api-gtxt.onrender.com/characters
 
 ### Get single character by ID
 GET https://cse341-potter-api-gtxt.onrender.com/characters/670ee350b43c2b3277f6ed10
+
+### Get all characters by house
+GET https://cse341-potter-api-gtxt.onrender.com/characters/house/Slytherin
 
 ### Create character
 POST https://cse341-potter-api-gtxt.onrender.com/characters HTTP/1.1

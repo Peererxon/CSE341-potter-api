@@ -107,6 +107,42 @@
           }
         }
       },
+      "/characters/house/{house}": {
+        "get": {
+          "tags": ["Characters"],
+          "summary": "Fetches all characters from a specific house",
+          "description": "Returns a list of characters belonging to a specific house.",
+          "parameters": [
+            {
+              "name": "house",
+              "in": "path",
+              "description": "The name of the house (e.g., Gryffindor, Slytherin, etc.)",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "An array of characters in the specified house.",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "404": {
+              "description": "No characters found for this house."
+            },
+            "400": {
+              "description": "Bad Request - Invalid house name format."
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
       "put": {
         "tags": ["Characters"],
         "description": "Modifies or updates an existing character",
