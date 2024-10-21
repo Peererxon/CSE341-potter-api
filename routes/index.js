@@ -5,12 +5,14 @@ const characterRoutes = require('./characters');
 const movieRoutes = require('./movies');
 const spellRoutes = require('./spells');
 const houseRoutes = require('./houses');
-const swaggerRoutes = require('./swagger'); 
+const authRoutes = require('./auth');
+const swaggerRoutes = require('./swagger');
 
 router.use('/characters', characterRoutes);
 router.use('/movies', movieRoutes);
 router.use('/spells', spellRoutes);
 router.use('/houses', houseRoutes);
+router.use('/auth', authRoutes);
 router.use('/', swaggerRoutes);
 
 router.get('/test', (_, res) => {

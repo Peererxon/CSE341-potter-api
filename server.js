@@ -3,8 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const mongodb = require('./data/database');
 const session = require('express-session');
-const passport = require('passport');
 const passportSetup = require('./passportSetup.js');
+const passport = require('passport');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -21,38 +21,17 @@ app.use(
 	})
 );
 
+// Initialize passport
+app.use(passport.initialize()); // this is to initialize the passport
+app.use(passport.session()); // this is to use the session
+
 // Test route
+
 app.get('/', (req, res) => {
 	res.send('Server is running on localhost');
 });
 
 app.use('/', require('./routes/index.js'));
-
-// Auth Routes
-//#swagger.tags=['auth']
-app.get(
-	'/auth/google',
-	passport.authenticate('google', { scope: ['profile', 'email'] })
-);
-
-//#swagger.tags=['auth']
-app.get(
-	'/auth/google/callback',
-	passport.authenticate('google', {
-		failureRedirect: '/failed',
-	}),
-	function (req, res) {
-		// Successful authentication, redirect home.
-		res.send('Login successful ' + JSON.stringify(req.user));
-	}
-);
-
-//Logout
-app.get('/logout', (req, res) => {
-	req.session = null;
-	req.logout();
-	res.redirect('/');
-});
 
 mongodb.initDb((err, db) => {
 	if (err) {
