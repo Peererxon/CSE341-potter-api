@@ -44,6 +44,27 @@ const getSingleCharacter = async (req, res) => {
     }
 };
 
+// Get all characters by house
+const getCharactersByHouse = async (req, res) => {
+    //#swagger.tags=['Characters']
+    try {
+        const houseName = req.params.house;
+        
+        const db = mongodb.getDb();
+        const result = await db.collection('characters').find({ house: houseName });
+        const characters = await result.toArray();
+
+        if (characters.length === 0) {
+            return res.status(404).json({ message: 'No characters found for this house' });
+        } else {
+            return res.status(200).json(characters);
+        }
+    } catch (err) {
+        console.error('Error fetching characters by house:', err);
+        return res.status(500).json({ message: 'Server error while fetching characters by house' });
+    }
+};
+
 // Create a new character
 const createCharacter = async (req, res) => {
     //#swagger.tags=['Characters']
@@ -123,6 +144,7 @@ const deleteCharacter = async (req, res) => {
 module.exports = {
     getAllCharacters,
     getSingleCharacter,
+    getCharactersByHouse,
     createCharacter,
     updateCharacter,
     deleteCharacter
