@@ -1,10 +1,10 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const mongodb = require('./data/database');
-const session = require('express-session');
-const passportSetup = require('./passportSetup.js');
-const passport = require('passport');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const mongodb = require("./data/database");
+const session = require("express-session");
+const passportSetup = require("./passportSetup.js");
+const passport = require("passport");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -27,11 +27,11 @@ app.use(passport.session()); // this is to use the session
 
 // Test route
 
-app.get('/', (req, res) => {
-	res.send('Server is running on localhost');
+app.get("/", (req, res) => {
+	res.send("Server is running on localhost");
 });
 
-app.use('/', require('./routes/index.js'));
+app.use("/", require("./routes/index.js"));
 
 mongodb.initDb((err, db) => {
 	if (err) {
@@ -42,3 +42,5 @@ mongodb.initDb((err, db) => {
 		});
 	}
 });
+
+module.exports = app;
