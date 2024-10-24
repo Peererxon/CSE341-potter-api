@@ -1,840 +1,918 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "CSE341 | Harry Potter API",
-    "description": "The CSE341 Potter API is an API designed for Harry Potter fans, providing information about the Harry Potter universe.",
-    "version": "1.0.0"
-  },
-  "host": "cse341-potter-api-gtxt.onrender.com",
-  "basePath": "/",
-  "schemes": [
-    "https"
-  ],
-  "paths": {
-    "/test": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/characters/": {
-      "get": {
-        "tags": ["Characters"],
-        "description": "Fetches all characters",
-        "responses": {
-          "200": {
-            "description": "An array of characters in returned."
-          },
-          "204": {
-            "description": "No characters found."
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Characters"],
-        "description": "Creates a new character",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "fullName": {
-                  "example": "Albus Dumbledore"
-                },
-                "house": {
-                  "example": "Gryffindor"
-                },
-                "birthdate": {
-                  "example": "1881-07-01"
-                },
-                "bloodStatus": {
-                  "example": "Half-blood"
-                },
-                "patronus": {
-                  "example": "Phoenix"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/characters/{id}": {
-      "get": {
-        "tags": ["Characters"],
-        "description": "Fetches a single character by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "/characters/house/{house}": {
-        "get": {
-          "tags": ["Characters"],
-          "summary": "Fetches all characters from a specific house",
-          "description": "Returns a list of characters belonging to a specific house.",
-          "parameters": [
-            {
-              "name": "house",
-              "in": "path",
-              "description": "The name of the house (e.g., Gryffindor, Slytherin, etc.)",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "An array of characters in the specified house.",
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object"
-                }
-              }
-            },
-            "404": {
-              "description": "No characters found for this house."
-            },
-            "400": {
-              "description": "Bad Request - Invalid house name format."
-            },
-            "500": {
-              "description": "Internal Server Error"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": ["Characters"],
-        "description": "Modifies or updates an existing character",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "fullName": {
-                  "example": "Albus Dumbledore"
-                },
-                "house": {
-                  "example": "Gryffindor"
-                },
-                "birthdate": {
-                  "example": "1881-07-01"
-                },
-                "bloodStatus": {
-                  "example": "Half-blood"
-                },
-                "patronus": {
-                  "example": "Phoenix"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Characters"],
-        "description": "Deletes a character by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/movies/": {
-      "get": {
-        "tags": ["Movies"],
-        "description": "Fetches all movies",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Movies"],
-        "description": "Creates a new movie",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "movieName": {
-                  "example": "Harry Potter and the Order of the Phoenix"
-                },
-                "director": {
-                  "example": "David Yates"
-                },
-                "runtime": {
-                  "example": "138 minutes"
-                },
-                "seriesNumber": {
-                  "example": 5
-                },
-                "duration": {
-                  "example": "2h 18m"
-                },
-                "rating": {
-                  "example": "PG-13"
-                },
-                "releaseDate": {
-                  "example": "2007-07-11"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/movies/{id}": {
-      "get": {
-        "tags": ["Movies"],
-        "description": "Fetches a single movies by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Movies"],
-        "description": "Modifies or updates an existing movie",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "movieName": {
-                  "example": "Harry Potter and the Order of the Phoenix"
-                },
-                "director": {
-                  "example": "David Yates"
-                },
-                "runtime": {
-                  "example": "138 minutes"
-                },
-                "seriesNumber": {
-                  "example": 5
-                },
-                "duration": {
-                  "example": "2h 18m"
-                },
-                "rating": {
-                  "example": "PG-13"
-                },
-                "releaseDate": {
-                  "example": "2007-07-11"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Movies"],
-        "description": "Deletes a movie by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/spells/": {
-      "get": {
-        "tags": ["Spells"],
-        "description": "Fetches all spells",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Spells"],
-        "description": "Creates a new spell",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "spellName": {
-                  "example": "Accio"
-                },
-                "spellType": {
-                  "example": "Charm"
-                },
-                "use": {
-                  "example": "Summoning"
-                },
-                "difficulty": {
-                  "example": "Easy"
-                },
-                "effects": {
-                  "example": "Summons an object towards the caster."
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/spells/{id}": {
-      "get": {
-        "tags": ["Spells"],
-        "description": "Fetches a single spell by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Spells"],
-        "description": "Modifies or updates an existing spell",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "spellName": {
-                  "example": "Accio"
-                },
-                "spellType": {
-                  "example": "Charm"
-                },
-                "use": {
-                  "example": "Summoning"
-                },
-                "difficulty": {
-                  "example": "Easy"
-                },
-                "effects": {
-                  "example": "Summons an object towards the caster."
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Spells"],
-        "description": "Deletes a spell by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/houses/": {
-      "get": {
-        "tags": ["Houses"],
-        "description": "Fetches all houses",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Houses"],
-        "description": "Creates a new house",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "Gryffindor"
-                },
-                "houseColors": {
-                  "type": "array",
-                  "example": ["Red", "Gold"]
-                },
-                "animal": {
-                  "example": "Lion"
-                },
-                "founder": {
-                  "example": "Godric Gryffindor"
-                },
-                "commonRoom": {
-                  "example": "Gryffindor Tower"
-                },
-                "houseHead": {
-                  "example": "Minerva McGonagall"
-                },
-                "houseGhost": {
-                  "example": "Nearly Headless Nick"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/houses/{id}": {
-      "get": {
-        "tags": ["Houses"],
-        "description": "Fetches a single house by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Houses"],
-        "description": "Modifies or updates an existing house",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "Gryffindor"
-                },
-                "houseColors": {
-                  "type": "array",
-                  "example": ["Red", "Gold"]
-                },
-                "animal": {
-                  "example": "Lion"
-                },
-                "founder": {
-                  "example": "Godric Gryffindor"
-                },
-                "commonRoom": {
-                  "example": "Gryffindor Tower"
-                },
-                "houseHead": {
-                  "example": "Minerva McGonagall"
-                },
-                "houseGhost": {
-                  "example": "Nearly Headless Nick"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Houses"],
-        "description": "Deletes a house by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "characters": {
-      "type": "object",
-      "properties": {
-        "fullName": {
-          "type": "string",
-          "example": "Draco Malfoy"
-        },
-        "house": {
-          "type": "string",
-          "example": "Slytherin"
-        },
-        "birthdate": {
-          "type": "string",
-          "example": "1980-06-05"
-        },
-        "bloodStatus": {
-          "type": "string",
-          "example": "Pure-blood"
-        },
-        "patronus": {
-          "type": "string",
-          "example": "None"
-        }
-      }
-    },
-    "houses": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "example": "Gryffindor"
-        },
-        "houseColors": {
-          "type": "array",
-          "example": [
-            "Red",
-            "Gold"
-          ],
-          "items": {
-            "type": "string"
-          }
-        },
-        "animal": {
-          "type": "string",
-          "example": "Lion"
-        },
-        "founder": {
-          "type": "string",
-          "example": "Godric Gryffindor"
-        },
-        "commonRoom": {
-          "type": "string",
-          "example": "Gryffindor Tower"
-        },
-        "houseHead": {
-          "type": "string",
-          "example": "Minerva McGonagall"
-        },
-        "houseGhost": {
-          "type": "string",
-          "example": "Nearly Headless Nick"
-        }
-      }
-    },
-    "movies": {
-      "type": "object",
-      "properties": {
-        "movieName": {
-          "type": "string",
-          "example": "Harry Potter and the Sorcerer's Stone"
-        },
-        "director": {
-          "type": "string",
-          "example": "Chris Columbus"
-        },
-        "runtime": {
-          "type": "string",
-          "example": "152 minutes"
-        },
-        "seriesNumber": {
-          "type": "number",
-          "example": 1
-        },
-        "duration": {
-          "type": "string",
-          "example": "2h 32m"
-        },
-        "rating": {
-          "type": "string",
-          "example": "PG"
-        },
-        "releaseDate": {
-          "type": "string",
-          "example": "2001-11-16"
-        }
-      }
-    },
-    "spells": {
-      "type": "object",
-      "properties": {
-        "spellName": {
-          "type": "string",
-          "example": "Expecto Patronum"
-        },
-        "spellType": {
-          "type": "string",
-          "example": "Charm"
-        },
-        "use": {
-          "type": "string",
-          "example": "Protection against Dementors"
-        },
-        "difficulty": {
-          "type": "string",
-          "example": "Advanced"
-        },
-        "effects": {
-          "type": "string",
-          "example": "Conjures a protective Patronus to ward off Dementors."
-        }
-      }
-    }
-  }
+	"swagger": "2.0",
+	"info": {
+		"title": "CSE341 | Harry Potter API",
+		"description": "The CSE341 Potter API is an API designed for Harry Potter fans, providing information about the Harry Potter universe.",
+		"version": "1.0.0"
+	},
+	"host": "cse341-potter-api-gtxt.onrender.com",
+	"basePath": "/",
+	"schemes": ["https"],
+	"paths": {
+		"/test": {
+			"get": {
+				"description": "",
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/characters/": {
+			"get": {
+				"tags": ["Characters"],
+				"description": "Fetches all characters",
+				"responses": {
+					"200": {
+						"description": "An array of characters in returned."
+					},
+					"204": {
+						"description": "No characters found."
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"post": {
+				"tags": ["Characters"],
+				"description": "Creates a new character",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"fullName": {
+									"example": "Albus Dumbledore"
+								},
+								"house": {
+									"example": "Gryffindor"
+								},
+								"birthdate": {
+									"example": "1881-07-01"
+								},
+								"bloodStatus": {
+									"example": "Half-blood"
+								},
+								"patronus": {
+									"example": "Phoenix"
+								}
+							}
+						}
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/characters/{id}": {
+			"get": {
+				"tags": ["Characters"],
+				"description": "Fetches a single character by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"/characters/house/{house}": {
+				"get": {
+					"tags": ["Characters"],
+					"summary": "Fetches all characters from a specific house",
+					"description": "Returns a list of characters belonging to a specific house.",
+					"parameters": [
+						{
+							"name": "house",
+							"in": "path",
+							"description": "The name of the house (e.g., Gryffindor, Slytherin, etc.)",
+							"required": true,
+							"type": "string"
+						}
+					],
+					"responses": {
+						"200": {
+							"description": "An array of characters in the specified house.",
+							"schema": {
+								"type": "array",
+								"items": {
+									"type": "object"
+								}
+							}
+						},
+						"404": {
+							"description": "No characters found for this house."
+						},
+						"400": {
+							"description": "Bad Request - Invalid house name format."
+						},
+						"500": {
+							"description": "Internal Server Error"
+						}
+					}
+				}
+			},
+			"put": {
+				"tags": ["Characters"],
+				"description": "Modifies or updates an existing character",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"fullName": {
+									"example": "Albus Dumbledore"
+								},
+								"house": {
+									"example": "Gryffindor"
+								},
+								"birthdate": {
+									"example": "1881-07-01"
+								},
+								"bloodStatus": {
+									"example": "Half-blood"
+								},
+								"patronus": {
+									"example": "Phoenix"
+								}
+							}
+						}
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["Characters"],
+				"description": "Deletes a character by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/movies/": {
+			"get": {
+				"tags": ["Movies"],
+				"description": "Fetches all movies",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"post": {
+				"tags": ["Movies"],
+				"description": "Creates a new movie",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"movieName": {
+									"example": "Harry Potter and the Order of the Phoenix"
+								},
+								"director": {
+									"example": "David Yates"
+								},
+								"runtime": {
+									"example": "138 minutes"
+								},
+								"seriesNumber": {
+									"example": 5
+								},
+								"duration": {
+									"example": "2h 18m"
+								},
+								"rating": {
+									"example": "PG-13"
+								},
+								"releaseDate": {
+									"example": "2007-07-11"
+								}
+							}
+						}
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/movies/{id}": {
+			"get": {
+				"tags": ["Movies"],
+				"description": "Fetches a single movies by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"put": {
+				"tags": ["Movies"],
+				"description": "Modifies or updates an existing movie",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"movieName": {
+									"example": "Harry Potter and the Order of the Phoenix"
+								},
+								"director": {
+									"example": "David Yates"
+								},
+								"runtime": {
+									"example": "138 minutes"
+								},
+								"seriesNumber": {
+									"example": 5
+								},
+								"duration": {
+									"example": "2h 18m"
+								},
+								"rating": {
+									"example": "PG-13"
+								},
+								"releaseDate": {
+									"example": "2007-07-11"
+								}
+							}
+						}
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["Movies"],
+				"description": "Deletes a movie by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/spells/": {
+			"get": {
+				"tags": ["Spells"],
+				"description": "Fetches all spells",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"post": {
+				"tags": ["Spells"],
+				"description": "Creates a new spell",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"spellName": {
+									"example": "Accio"
+								},
+								"spellType": {
+									"example": "Charm"
+								},
+								"use": {
+									"example": "Summoning"
+								},
+								"difficulty": {
+									"example": "Easy"
+								},
+								"effects": {
+									"example": "Summons an object towards the caster."
+								}
+							}
+						}
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/spells/{id}": {
+			"get": {
+				"tags": ["Spells"],
+				"description": "Fetches a single spell by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"put": {
+				"tags": ["Spells"],
+				"description": "Modifies or updates an existing spell",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"spellName": {
+									"example": "Accio"
+								},
+								"spellType": {
+									"example": "Charm"
+								},
+								"use": {
+									"example": "Summoning"
+								},
+								"difficulty": {
+									"example": "Easy"
+								},
+								"effects": {
+									"example": "Summons an object towards the caster."
+								}
+							}
+						}
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["Spells"],
+				"description": "Deletes a spell by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/houses/": {
+			"get": {
+				"tags": ["Houses"],
+				"description": "Fetches all houses",
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"post": {
+				"tags": ["Houses"],
+				"description": "Creates a new house",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": {
+									"example": "Gryffindor"
+								},
+								"houseColors": {
+									"type": "array",
+									"example": ["Red", "Gold"]
+								},
+								"animal": {
+									"example": "Lion"
+								},
+								"founder": {
+									"example": "Godric Gryffindor"
+								},
+								"commonRoom": {
+									"example": "Gryffindor Tower"
+								},
+								"houseHead": {
+									"example": "Minerva McGonagall"
+								},
+								"houseGhost": {
+									"example": "Nearly Headless Nick"
+								}
+							}
+						}
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/houses/{id}": {
+			"get": {
+				"tags": ["Houses"],
+				"description": "Fetches a single house by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"put": {
+				"tags": ["Houses"],
+				"description": "Modifies or updates an existing house",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": {
+									"example": "Gryffindor"
+								},
+								"houseColors": {
+									"type": "array",
+									"example": ["Red", "Gold"]
+								},
+								"animal": {
+									"example": "Lion"
+								},
+								"founder": {
+									"example": "Godric Gryffindor"
+								},
+								"commonRoom": {
+									"example": "Gryffindor Tower"
+								},
+								"houseHead": {
+									"example": "Minerva McGonagall"
+								},
+								"houseGhost": {
+									"example": "Nearly Headless Nick"
+								}
+							}
+						}
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["Houses"],
+				"description": "Deletes a house by ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"security": {
+					"OAuth2": ["read"]
+				},
+				"responses": {
+					"204": {
+						"description": "No Content"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "You dont have permission to access this resource"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"characters": {
+			"type": "object",
+			"properties": {
+				"fullName": {
+					"type": "string",
+					"example": "Draco Malfoy"
+				},
+				"house": {
+					"type": "string",
+					"example": "Slytherin"
+				},
+				"birthdate": {
+					"type": "string",
+					"example": "1980-06-05"
+				},
+				"bloodStatus": {
+					"type": "string",
+					"example": "Pure-blood"
+				},
+				"patronus": {
+					"type": "string",
+					"example": "None"
+				}
+			}
+		},
+		"houses": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"example": "Gryffindor"
+				},
+				"houseColors": {
+					"type": "array",
+					"example": ["Red", "Gold"],
+					"items": {
+						"type": "string"
+					}
+				},
+				"animal": {
+					"type": "string",
+					"example": "Lion"
+				},
+				"founder": {
+					"type": "string",
+					"example": "Godric Gryffindor"
+				},
+				"commonRoom": {
+					"type": "string",
+					"example": "Gryffindor Tower"
+				},
+				"houseHead": {
+					"type": "string",
+					"example": "Minerva McGonagall"
+				},
+				"houseGhost": {
+					"type": "string",
+					"example": "Nearly Headless Nick"
+				}
+			}
+		},
+		"movies": {
+			"type": "object",
+			"properties": {
+				"movieName": {
+					"type": "string",
+					"example": "Harry Potter and the Sorcerer's Stone"
+				},
+				"director": {
+					"type": "string",
+					"example": "Chris Columbus"
+				},
+				"runtime": {
+					"type": "string",
+					"example": "152 minutes"
+				},
+				"seriesNumber": {
+					"type": "number",
+					"example": 1
+				},
+				"duration": {
+					"type": "string",
+					"example": "2h 32m"
+				},
+				"rating": {
+					"type": "string",
+					"example": "PG"
+				},
+				"releaseDate": {
+					"type": "string",
+					"example": "2001-11-16"
+				}
+			}
+		},
+		"spells": {
+			"type": "object",
+			"properties": {
+				"spellName": {
+					"type": "string",
+					"example": "Expecto Patronum"
+				},
+				"spellType": {
+					"type": "string",
+					"example": "Charm"
+				},
+				"use": {
+					"type": "string",
+					"example": "Protection against Dementors"
+				},
+				"difficulty": {
+					"type": "string",
+					"example": "Advanced"
+				},
+				"effects": {
+					"type": "string",
+					"example": "Conjures a protective Patronus to ward off Dementors."
+				}
+			}
+		}
+	},
+	"securityDefinitions": {
+		"OAuth2": {
+			"type": "oauth2",
+			"flow": "accessCode",
+			"authorizationUrl": "cse341-potter-api-gtxt.onrender.com/auth/google",
+			"tokenUrl": "cse341-potter-api-gtxt.onrender.com/auth/google/callback",
+			"scopes": {
+				"write": "Grants write access"
+			}
+		}
+	}
 }
