@@ -5,8 +5,6 @@ const { ObjectId } = require('mongodb');
 const getAllMovies = async (req, res) => {
 	//#swagger.tags=['Movies']
 	try {
-		console.log(res);
-
 		const db = mongodb.getDb();
 		const result = await db.collection('movies').find();
 		const movies = await result.toArray();
